@@ -6,12 +6,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
+	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 	
@@ -19,6 +19,7 @@
 		
 		<maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <!--  
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -34,9 +35,11 @@
     <fabric8.generator.from>
       registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version}
     </fabric8.generator.from>
+    -->
     
 	</properties>
 	
+	 <!--  
 	<dependencyManagement>
     <dependencies>
       <dependency>
@@ -48,6 +51,24 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  -->
+  
+  <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
   
 	<dependencies>
 	
@@ -83,6 +104,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- MySQL -->
+		<dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+   			<scope>runtime</scope>
+		</dependency>
+		
 	</dependencies>
 
 <!--
@@ -110,7 +139,7 @@
   </build>
   -->
   
-   
+   <!--  
   <profiles>
  
     <profile>
@@ -150,6 +179,8 @@
       </build>
     </profile>
   </profiles>
+  
+  -->
   
 
 </project>
